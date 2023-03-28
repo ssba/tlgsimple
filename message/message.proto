@@ -1,0 +1,22 @@
+syntax = "proto3";
+
+package message;
+
+option go_package = "tlgsimple/message";
+
+service MessageService {
+    rpc SendData (DataRequest) returns (DataResponse);
+}
+
+message DataRequest {
+    int64 user_id = 1;
+    string nickname = 2;
+    string message = 3;
+    int64 message_ts = 4;
+}
+
+message DataResponse {
+    string status = 1;
+}
+
+// protoc --go_out=. --go_opt=paths=source_relative --go-grpc_out=. --go-grpc_opt=paths=source_relative message/message.proto
